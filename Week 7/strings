@@ -1,0 +1,118 @@
+def encode_string(text):
+    """
+    Encodes a string using run-length encoding with escape support.
+
+    Parameters:
+        text (str): Input string.
+
+    Returns:
+        str: Encoded RLE string beginning with ##00.
+    """
+
+    if not isinstance(text, str):
+        raise TypeError("Input must be a string.")
+
+    if text == "":
+        raise ValueError("Input cannot be empty.")
+
+    encoded = "##00"
+    count = 1
+    i = 0
+
+    while i < len(text):
+        current = text[i]
+
+        # Handle escape #
+        if current == "#":
+            if i + 1 < len(text) and text[i + 1] == "#":
+                current = "#"
+                i += 1
+            else:
+                raise ValueError("Invalid escape sequence.")
+
+        # Count repeats
+        j = i + 1
+        while j < len(text) and text[j] == text[i]:
+            count += 1
+            j += 1
+
+        # Escape digits in encoding
+        if current.isdigit():
+            encoded += "#" + current
+        else:
+            encoded += current
+
+        if count > 1:
+            encoded += str(count)
+
+        count = 1
+        i = j
+
+    return encoded
+
+def decode_string(text):
+    """
+    Decodes a run-length encoded string with escape support.
+
+    Parameters:
+        text (str): Encoded RLE string starting with ##00.
+
+    Returns:
+        str: Decoded string.
+    """
+
+    if not isinstance(text, str):
+        raise TypeError("Input must be a string.")
+
+    if not text.startswith("##00"):
+        raise ValueError("Encoded string must begin with ##00.")
+
+    text = text[4:]  # Remove prefix
+    decoded = ""
+    i = 0
+
+    while i < len(text):
+        if text[i] == "#":
+            if i + 1 < len(text):
+                decoded += text[i + 1]
+                i += 2
+            else:
+                raise ValueError("Invalid escape sequence.")
+            continue
+
+        char = text[i]
+        i += 1
+        count = ""
+
+        while i < len(text) and text[i].isdigit():
+            count += text[i]
+            i += 1
+
+        if count:
+            decoded += char * int(count)
+        else:
+            decoded += char
+
+    return decoded
+
+def main():
+    """
+    Main program function.
+    """
+
+    user_input = input("Enter a string to encode or decode: ")
+
+    try:
+        if user_input.startswith("##00"):
+            result = decode_string(user_input)
+            print("Decoded result:", result)
+        else:
+            result = encode_string(user_input)
+            print("Encoded result:", result)
+
+    except Exception as e:
+        print("Error:", e)
+
+
+if __name__ == "__main__":
+    main()
