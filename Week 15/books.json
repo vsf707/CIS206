@@ -1,1 +1,64 @@
-
+{
+  "books": [
+    {
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "year": 1960,
+      "available": true
+    },
+    {
+      "title": "1984",
+      "author": "George Orwell",
+      "year": 1949,
+      "available": false
+    },
+    {
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "year": 1925,
+      "available": true
+    },
+    {
+      "title": "Wonder",
+      "author": "R.J. Palacio",
+      "year": 2012,
+      "available": false
+    },
+    {
+      "title": "The Catcher in the Rye",
+      "author": "J.D. Salinger",
+      "year": 1951,
+      "available": true
+    },
+    {
+      "title": "Diary of a Wimpy Kid",
+      "author": "Jeff Kinney",
+      "year": 2007,
+      "available": false
+    },
+    {
+      "title": "The Hunger Games",
+      "author": "Suzanne Collins",
+      "year": 2008,
+      "available": true
+    },
+    {
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "year": 1813,
+      "available": true
+    },
+    {
+      "title": "Bud, Not Buddy",
+      "author": "Christopher Paul Curtis",
+      "year": 1999,
+      "available": false
+    },
+    {
+      "title": "The Lightning Thief",
+      "author": "Rick Riordan",
+      "year": 2005,
+      "available": false
+    }
+  ]
+}
